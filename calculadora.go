@@ -30,8 +30,6 @@ func (calc) operate(entrada string, operador string) int {
     return 0
 
   }
-  
-
 }
 
 func parsear(entrada string) int {
