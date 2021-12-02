@@ -14,6 +14,23 @@ func (tl *taskList) removeFromList(index int) {
   tl.tasks = append(tl.tasks[:index], tl.tasks[index + 1:]...)
 }
 
+func (tl *taskList) printList(){
+  for _, task := range tl.tasks {
+    fmt.Println("Nombre:", task.name)
+    fmt.Println("Descripción:", task.description)
+  }
+}
+
+func (tl *taskList) printCompleteList(){
+  for _, task := range tl.tasks {
+    if task.complete == true {
+      fmt.Println("Nombre:", task.name)
+      fmt.Println("Descripción:", task.description)
+    }
+    
+  }
+}
+
 type task struct {
   name string
   description string
@@ -60,16 +77,25 @@ func main() {
   //fmt.Println(list.tasks[0])
 
   // fmt.Printf("%+v\n", t1)
-  // t1.markComplete()
+  t1.markComplete()
   // t1.updateName("holo")
   // fmt.Printf("%+v\n", t1)
 
   list.addToList(t3)
+  // fmt.Println(len(list.tasks))
+  // list.removeFromList(1)
+  // fmt.Println(len(list.tasks))
 
-  fmt.Println(len(list.tasks))
+  // for  i:=0; i < len(list.tasks); i++ {
+  //   fmt.Println("Index", i, "nombre", list.tasks[i])
+  // }
 
-  list.removeFromList(1)
+  // for index, task := range list.tasks {
+  //   fmt.Println("index ", index, "tarea", task)
+  // }
 
-  fmt.Println(len(list.tasks))
+  //list.printList()
+
+  list.printCompleteList()
 
 }
