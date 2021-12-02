@@ -8,7 +8,7 @@ import (
   "strconv"
 )
 
-func main() {
+func calculadora() {
   scanner := bufio.NewScanner(os.Stdin)
   scanner.Scan()
 

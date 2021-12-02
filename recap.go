@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func main() {
+func recap() {
 	var mensaje string = "Hola"
   mensajeFacil := "hola"
   fmt.Println("Hello, World!")
