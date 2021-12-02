@@ -8,27 +8,48 @@ import (
   "strconv"
 )
 
-func calculadora() {
+type calc struct {
+
+}
+
+//receiver function nospermite hacer calc.operate, hace que calc pueda ser usada por el struct
+func (calc) operate(entrada string, operador string) int {
+  valores := strings.Split(entrada, operador)
+  op_1 := parsear(valores[0])
+  op_2 := parsear(valores[1])
+  switch operador {
+    case "+":
+    return op_1 + op_2
+  case "-":
+    return op_1 - op_2
+  case "*":
+    return op_1 * op_2
+  case "/":
+    return op_1 / op_2
+  default:
+    return 0
+
+  }
+  
+
+}
+
+func parsear(entrada string) int {
+  op_1, _ := strconv.Atoi(entrada)
+  return op_1
+  
+}
+
+func leerEntrada() string {
   scanner := bufio.NewScanner(os.Stdin)
   scanner.Scan()
+  return scanner.Text()
+}
 
-  operacion:= scanner.Text()
-  fmt.Println(operacion)
+func main_2() {
+  entrada := leerEntrada()
+  operador := leerEntrada()
 
-  valores := strings.Split(operacion, "+")
-  fmt.Println(valores)
-  fmt.Println(valores[0] + valores[1])
-
-  //aplicar casting
-  op_1, err := strconv.Atoi(valores[0])
-  if err != nil {
-    fmt.Println(err)
-  }
-  op_2, err2 := strconv.Atoi(valores[1])
-  if err2 != nil {
-    fmt.Println(err2)
-  }
-
-
-  fmt.Println(op_1 + op_2)
+  c := calc{}
+  fmt.Println(c.operate(entrada, operador))
 }
