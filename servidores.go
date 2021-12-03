@@ -6,16 +6,17 @@ import (
 	"time"
 )
 
-func checkServer(server string) {
+func checkServer(server string, channel chan string) {
 	_, err := http.Get(server)
 	if err != nil {
-		fmt.Println(server, "server not available :(")
+		channel <- server + "not available"
 	}
-	fmt.Println(server, "works :D")
+	channel <- server + "works :D"
 }
 
 func main() {
 	start := time.Now()
+	channel := make(chan string) //string means we are transmitting strings
 
 	servers := []string{
 		"http://google.com",
@@ -24,9 +25,13 @@ func main() {
 	}
 
 	for _, server := range servers {
-		checkServer(server)
+		go checkServer(server, channel)
+
 	}
 
+	for i := 0; i < len(servers); i++ {
+		fmt.Println(<-channel)
+	}
 	passed := time.Since(start)
 
 	fmt.Printf("execution time: %s", passed)
