@@ -96,6 +96,32 @@ func main() {
 
   //list.printList()
 
-  list.printCompleteList()
+  //list.printCompleteList()
+
+  mapTasks := make(map[string]*taskList)
+
+  mapTasks["Dave"] = list
+
+  t4 := &task {
+    name: "be awesome",
+    description: "...",
+  }
+
+  t5 := &task {
+    name: "be epic",
+    description: "!!!",
+  }
+
+  list2 := &taskList{
+    tasks: []*task{
+      t4, t5,
+    },
+  }
+
+  mapTasks["Nuke"] = list2
+
+  mapTasks["Nuke"].printList()
+
+
 
 }
