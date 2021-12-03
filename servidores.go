@@ -24,14 +24,23 @@ func main() {
 		"http://instagram.com",
 	}
 
-	for _, server := range servers {
-		go checkServer(server, channel)
+	i := 0
 
-	}
+	//go doesn't have while
+	for {
 
-	for i := 0; i < len(servers); i++ {
+		if i > 2 {
+			break
+		}
+		for _, server := range servers {
+			go checkServer(server, channel)
+
+		}
+		time.Sleep(1 * time.Second)
 		fmt.Println(<-channel)
+		i++
 	}
+
 	passed := time.Since(start)
 
 	fmt.Printf("execution time: %s", passed)
